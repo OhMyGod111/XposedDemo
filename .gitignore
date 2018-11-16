@@ -1,0 +1,7 @@
+/.idea
+/.gradle
+/*.iml
+/app/build
+/app/app.iml
+/textxposed/build
+/textxposed/textxposed.iml
