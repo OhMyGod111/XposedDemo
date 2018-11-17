@@ -2,6 +2,8 @@ package cn.vobile.textxposed.com;
 
 import android.util.Log;
 
+import java.util.Date;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
@@ -32,8 +34,13 @@ public class TestHook implements IXposedHookLoadPackage {
                     "getString",
 //                    String.class,
                     new MyXC_MethodHook());
-        }
 
+            XposedHelpers.findAndHookMethod("java.text.DateFormat",
+                    loadPackageParam.classLoader,
+                    "format",
+                    Date.class,
+                    new MyXC_MethodHook1());
+        }
     }
 
     static class MyXC_MethodHook extends XC_MethodHook {
@@ -55,6 +62,30 @@ public class TestHook implements IXposedHookLoadPackage {
             super.afterHookedMethod(param);
             XposedBridge.log("Enter->afterHookedMethod:Activity.onCreate");
             param.setResult("Hello TestHook !!!");
+        }
+    }
+
+    static class MyXC_MethodHook1 extends XC_MethodHook {
+        public MyXC_MethodHook1() {
+        }
+
+        public MyXC_MethodHook1(int priority) {
+            super(priority);
+        }
+
+        @Override
+        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            super.beforeHookedMethod(param);
+            XposedBridge.log("Enter->beforeHookedMethod");
+            Date date = new Date();
+            date.setTime(50758);
+            param.args = new Object[]{date};
+        }
+
+        @Override
+        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+            super.afterHookedMethod(param);
+            XposedBridge.log("Enter->afterHookedMethod");
         }
     }
 }
