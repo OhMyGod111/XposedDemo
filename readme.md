@@ -7,7 +7,7 @@
 - 雷电模拟器 Android 5.1.1 版本
 - Android Studio 3.1.2 版本
 - Xposed Installer 3.1.5 版本   需要将此apk文件安装到模拟器中
-- 打开Xposed Installer apk文件，在”安装/更新“中下载所需库文件，按提示操作完成，重启设备即可
+- 安装[Xposed_Installer_apk](https://raw.githubusercontent.com/OhMyGod111/XposedDemo/master/apk_file/XposedInstaller_3.1.5.apk)文件，打开在”安装/更新“中下载所需库文件，按提示操作完成，重启设备即可
 
 **工程配置**
 
